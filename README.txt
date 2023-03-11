@@ -1,28 +1,19 @@
-REMIX DEFAULT WORKSPACE
+CrowdFunding Smart Contract
+This smart contract is designed to implement a crowdfunding platform using the Ethereum blockchain. It is written in the Solidity programming language and uses the Ethereum Virtual Machine (EVM) to execute the code.
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+How it works
+The contract allows people to contribute ether to the contract, and if the total contributions reach a predetermined target amount before a deadline, the funds will be released to the project owner or recipient. If the target is not reached by the deadline, the contributors can withdraw their contributions.
 
-This workspace contains 3 directories:
+The contract has several features, including:
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+minimumContribution: The minimum amount of ether that a contributor can contribute to the contract.
+deadline: The deadline by which the target amount must be reached.
+target: The target amount of ether that must be raised for the project to be funded.
+raisedAmount: The total amount of ether raised by the contributors.
+noOfContributors: The number of contributors who have contributed to the contract.
+Request: A struct that contains information about a payment request made by the project owner or recipient.
+requests: A mapping that stores all the payment requests made by the project owner or recipient.
+The contract owner or manager can create a payment request by calling createRequests. Contributors can then vote on the request by calling voteRequest. Once a request has received a majority of votes from the contributors, the manager can call makePayment to release the funds to the recipient.
 
-SCRIPTS
-
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
-
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
-
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
-
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
-
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+Usage
+To use this smart contract, you will need to deploy it on the Ethereum blockchain using a tool such as Remix or Truffle. Once deployed, contributors can send ether to the contract by calling sendEth. The contract owner or manager can create payment requests using createRequests, and contributors can vote on them using voteRequest. When the target amount is reached, the manager can call makePayment to release the funds to the recipient. If the target is not reached by the deadline, contributors can withdraw their contributions using refund.
